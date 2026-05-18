@@ -1,0 +1,7 @@
+dist
+node_modules
+package-lock.json
+
+# Планувальні документи з ручним форматуванням таблиць
+CLAUDE.md
+frontend-roadmap.md
