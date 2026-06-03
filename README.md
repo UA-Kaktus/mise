@@ -1,73 +1,63 @@
-# React + TypeScript + Vite
+# Footfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Football analytics web app focused on a single idea: **player efficiency — "money per goal"**
+(`salary / goals`). Browse leagues, teams and players; an admin can edit the data inline. Built as a learning
+project to practise TypeScript and advanced React on real code rather than another tutorial to-do app.
 
-Currently, two official plugins are available:
+**Live:** https://footfolio-b3fl1muda-ua-kaktus-26.vercel.app/ · _Status: early development._
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## The metric
 
-## React Compiler
+Every efficiency number (player KPD, team aggregates, league table positions) is **computed on the frontend** from
+primary data — never stored. Single source of truth stays the raw figures from the database. Data is a snapshot of a
+**finished season**, so goals are final and the metric is stable.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech stack
 
-## Expanding the ESLint configuration
+| Layer          | Choice                                          |
+| -------------- | ----------------------------------------------- |
+| Build / dev    | Vite                                            |
+| UI             | React 19 + TypeScript                           |
+| Styling        | Tailwind CSS v4 (own components, no UI library) |
+| Routing        | React Router                                    |
+| Server state   | TanStack Query                                  |
+| Client state   | Zustand                                         |
+| Forms          | react-hook-form + zod                           |
+| Backend (BaaS) | Supabase (PostgreSQL + Auth + RLS)              |
+| Tests          | Vitest + React Testing Library + MSW            |
+| Quality        | ESLint + Prettier + husky + lint-staged         |
+| CI / Hosting   | GitHub Actions · Vercel                         |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The browser talks to Supabase directly via `supabase-js`; Vercel only hosts the static frontend. The Supabase anon
+key is public by design — the database is protected by Row Level Security.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+cp .env.example .env.local   # fill in your Supabase URL + anon key
+npm run dev                  # http://localhost:5173
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Script                            | Does                          |
+| --------------------------------- | ----------------------------- |
+| `npm run dev`                     | Vite dev server               |
+| `npm run build`                   | type-check + production build |
+| `npm run lint` / `lint:fix`       | ESLint                        |
+| `npm run format` / `format:check` | Prettier                      |
+| `npm run type-check`              | `tsc` no-emit                 |
+| `npm run preview`                 | preview the production build  |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Documentation
+
+- [`docs/project-idea.md`](docs/project-idea.md) — domain, entities, pages, admin flow.
+- [`docs/roadmap.md`](docs/roadmap.md) — feature roadmap & progress.
+- [`docs/design-system.md`](docs/design-system.md) — tokens & UI components.
+- [`CLAUDE.md`](CLAUDE.md) + [`.claude/`](.claude/) — AI-pair-programming setup (rules, review agents, `/build` + `/mentor`).
+
+## Roadmap (high level)
+
+Block 1 — core app on Vite + React + TS. Block 2 (later) — migrate to Next.js (App Router, RSC).
+See [`docs/roadmap.md`](docs/roadmap.md) for the module checklist.
