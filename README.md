@@ -1,16 +1,18 @@
-# Footfolio
+# Mise
 
-Football analytics web app focused on a single idea: **player efficiency — "money per goal"**
-(`salary / goals`). Browse leagues, teams and players; an admin can edit the data inline. Built as a learning
-project to practise TypeScript and advanced React on real code rather than another tutorial to-do app.
+Household meal-planning app named after the culinary term _mise en place_ ("everything in its place").
+Plan who cooks what and when, build a shopping list automatically, and see which dishes are cheapest today based on store prices and deals.
 
-**Live:** https://footfolio-b3fl1muda-ua-kaktus-26.vercel.app/ · _Status: early development._
+**Live:** _(new Supabase + Vercel project in progress)_
 
-## The metric
+## What it does
 
-Every efficiency number (player KPD, team aggregates, league table positions) is **computed on the frontend** from
-primary data — never stored. Single source of truth stays the raw figures from the database. Data is a snapshot of a
-**finished season**, so goals are final and the metric is stable.
+- Each household member maintains their own dish list.
+- Anyone in the household can schedule dishes on a shared weekly calendar.
+- Select a date range → the app aggregates raw ingredient needs, rounds up packaged goods, and computes the total shopping cost.
+- An admin manages the canonical ingredient catalog and maps ingredients to store products for price tracking.
+
+All metrics (dish cost, weekly spend, shopping list) are **computed at render time from primary data** — nothing is stored as a derived column. Single source of truth stays in Supabase.
 
 ## Tech stack
 
@@ -52,7 +54,7 @@ npm run dev                  # http://localhost:5173
 
 ## Documentation
 
-- [`docs/project-idea.md`](docs/project-idea.md) — domain, entities, pages, admin flow.
+- [`docs/project-idea.md`](docs/project-idea.md) — domain, entities, pages, pricing layers.
 - [`docs/roadmap.md`](docs/roadmap.md) — feature roadmap & progress.
 - [`docs/design-system.md`](docs/design-system.md) — tokens & UI components.
 - [`CLAUDE.md`](CLAUDE.md) + [`.claude/`](.claude/) — AI-pair-programming setup (rules, review agents, `/build` + `/mentor`).

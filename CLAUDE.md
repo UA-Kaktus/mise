@@ -1,6 +1,6 @@
-# Footfolio — AI partner contract
+# Mise — AI partner contract
 
-Footfolio — a football analytics pet project. Vite + React 19 + TypeScript + Tailwind v4 + React Router + Supabase + TanStack Query
+Mise — a household meal-planning app (named after *mise en place*). Vite + React 19 + TypeScript + Tailwind v4 + React Router + Supabase + TanStack Query
 + Zustand + react-hook-form/zod, tested with Vitest + RTL + MSW. Solo learning project — discipline over speed.
 
 Project domain, entities, pages, roadmap: see `docs/project-idea.md` and `docs/roadmap.md`.
