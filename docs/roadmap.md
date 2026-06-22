@@ -13,11 +13,15 @@
 - [ ] Auth (admin login + protected edit-контроли + demo-login button)
 - [ ] Design system + UI shell (дизайн-токени, власні Tailwind-компоненти, layout)
 - [ ] Responsive / mobile-first (breakpoints, адаптивні таблиці: horizontal-scroll vs card-view на мобільному)
-- [ ] Core CRUD (player / team / standings — list / detail / create / edit / delete)
-- [ ] Forms поглиблено (player edit form, cross-field / async validation, useFieldArray)
+- [ ] Household onboarding (create / join by invite code, members list)
+- [ ] Dish CRUD (власні страви — фото, опис, інгредієнти, нотатки, лінк)
+- [ ] Ingredient catalog — admin (довідник, базові одиниці, ціни Шар 0, маппінг)
+- [ ] Weekly plan calendar (додати страву на день, лейбл кухаря, shared в household)
+- [ ] Shopping list (вибір днів → агрегація → округлення упаковок → вартість)
+- [ ] Forms поглиблено (dish form: RHF + zod, cross-field, useFieldArray для інгредієнтів)
 - [ ] State management deep (React Query advanced, Zustand advanced)
-- [ ] Filters + Search (фільтри ліга / команда / позиція / зарплата, пошук, сортування, URL sync)
-- [ ] Real-time (Supabase Realtime) — _під питанням: слабкий use-case, рішення при коригуванні_
+- [ ] Filters + Search (каталог: по кухарю / промо; календар: тиждень / кухар; URL sync)
+- [ ] Real-time (Supabase Realtime) — _v2: виправданий use-case (двоє редагують спільний календар одночасно)_
 - [ ] Loading / Error / Empty states скрізь
 - [ ] Animations / microinteractions (переходи, skeleton-shimmer, hover/active; Framer Motion за потреби)
 - [ ] Testing (Vitest + RTL + MSW)

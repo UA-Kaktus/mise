@@ -31,5 +31,17 @@ DB request path. The dev has no backend experience; explain data flow, not serve
 
 ## Schema reference
 
-Tables: `leagues`, `teams`, `players`, `team_standings`. Player season stats live on `players` (single-season snapshot).
+Tables (орієнтовно):
+
+| Таблиця             | Призначення                                                      |
+| ------------------- | ---------------------------------------------------------------- |
+| `users`             | Supabase auth + `is_admin` flag                                  |
+| `households`        | Домогосподарство: `name`, `invite_code`                          |
+| `household_members` | m2m: `user_id` × `household_id`                                  |
+| `dishes`            | Страви: `owner_id`, `household_id`, `name`, `photo_url`, etc.    |
+| `ingredients`       | Канонічний довідник: `name`, `base_unit`, `kind`, `package_size` |
+| `dish_ingredients`  | m2m + дані: `dish_id`, `ingredient_id`, `amount`, `unit`         |
+| `plan_entries`      | Календар: `household_id`, `dish_id`, `date`, `created_by`        |
+| `ingredient_prices` | Ціни: `ingredient_id`, `price`, `old_price`, `is_promo`, `store` |
+
 Full domain detail: see `docs/project-idea.md`.
