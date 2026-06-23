@@ -3,7 +3,7 @@
 Household meal-planning app named after the culinary term _mise en place_ ("everything in its place").
 Plan who cooks what and when, build a shopping list automatically, and see which dishes are cheapest today based on store prices and deals.
 
-**Live:** _(new Supabase + Vercel project in progress)_
+**Live:** https://mise-ua-kaktus-26.vercel.app
 
 ## What it does
 
