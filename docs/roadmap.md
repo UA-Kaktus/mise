@@ -9,9 +9,9 @@
 
 - [x] Setup інфраструктури (Vite + TS + Tailwind + ESLint + Prettier + husky; Vercel; Supabase; GitHub Actions)
 - [x] Claude-партнерська інфраструктура (`.claude/` rules + agents + `/build` + `/mentor`; `docs/`)
-- [ ] Routing (React Router — nested / dynamic / lazy routes)
+- [x] Routing (React Router — nested / dynamic / lazy routes)
 - [ ] Auth (admin login + protected edit-контроли + demo-login button)
-- [ ] Design system + UI shell (дизайн-токени, власні Tailwind-компоненти, layout)
+- [x] Design system + UI shell (дизайн-токени, власні Tailwind-компоненти, layout)
 - [ ] Responsive / mobile-first (breakpoints, адаптивні таблиці: horizontal-scroll vs card-view на мобільному)
 - [ ] Household onboarding (create / join by invite code, members list)
 - [ ] Dish CRUD (власні страви — фото, опис, інгредієнти, нотатки, лінк)
