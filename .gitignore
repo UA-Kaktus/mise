@@ -18,6 +18,8 @@ dist-ssr
 !.env.example
 
 frontend-roadmap.md
+docs/plans/
+docs/specs/
 
 # Editor directories and files
 .vscode/*

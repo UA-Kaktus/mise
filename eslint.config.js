@@ -20,6 +20,23 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  {
+    files: ['**/*.test.{ts,tsx}', 'src/test/**/*.ts'],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        test: 'readonly',
+        expect: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+        vi: 'readonly',
+      },
+    },
+  },
   // Вимикає ESLint-правила форматування, що конфліктують з Prettier.
   // Має бути ОСТАННІМ, щоб перевизначити попередні набори.
   prettier,
