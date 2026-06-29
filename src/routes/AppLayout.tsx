@@ -8,6 +8,7 @@ import {
   Settings,
   Menu,
   LogOut,
+  User,
 } from 'lucide-react'
 // ShieldCheck
 
@@ -26,20 +27,26 @@ export default function AppLayout() {
     () => localStorage.getItem('sidebar-collapsed') === 'true',
   )
 
-  const navMenu = navItems.map(({ to, label, icon: Icon }) => {
-    return (
-      <NavLink
-        key={to}
-        to={to}
-        className={({ isActive }) =>
-          isActive ? 'активні класи' : 'звичайні класи'
-        }
-      >
-        <Icon size={20} />
-        {label}
-      </NavLink>
-    )
-  })
+  const navMenu = (
+    <ul className="flex flex-col gap-2 px-3">
+      {navItems.map(({ to, label, icon: Icon }) => (
+        <li key={to}>
+          <NavLink
+            to={to}
+            className={({ isActive }) => {
+              const base = `flex min-h-10 items-center gap-3 rounded-sm p-2`
+              return isActive
+                ? `${base} text-accent bg-accent-subtle`
+                : `${base} hover:bg-black/5`
+            }}
+          >
+            <Icon size={22} className="shrink-0" />
+            {!collapsed && <span className="whitespace-nowrap">{label}</span>}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  )
 
   const toggle = () =>
     setCollapsed((prev) => {
@@ -48,27 +55,62 @@ export default function AppLayout() {
     })
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen flex-col p-2 lg:flex-row">
       <aside
-        className={`hidden h-full flex-col gap-2 transition-[width] duration-200 lg:flex ${collapsed ? 'w-15' : 'w-45'}`}
+        className={`bg-surface shadow-card hidden h-full flex-col overflow-hidden rounded-lg border-[0.5px] border-black/5 [transition:width_200ms_ease] lg:flex ${collapsed ? 'w-16' : 'w-60'}`}
       >
-        <div className="flex justify-between gap-2">
-          <span>Mise</span>
-          <button onClick={toggle}>
-            {' '}
+        {/* Header */}
+        <div
+          className={`flex items-center p-4 ${collapsed ? '' : 'justify-between'}`}
+        >
+          {!collapsed && (
+            <span className="text-base font-semibold tracking-tight whitespace-nowrap">
+              Mise
+            </span>
+          )}
+          <button
+            onClick={toggle}
+            aria-label="toggle sidebar"
+            className="rounded-sm p-1.5 hover:cursor-pointer hover:bg-black/5"
+          >
             <Menu size={20} />
           </button>
         </div>
-        {navMenu}
-        <button>
-          <LogOut size={20} />
-        </button>
+
+        {/* Nav */}
+        <nav className="flex-1 py-2">{navMenu}</nav>
+
+        {/* Footer */}
+        <div className="border-border border-t px-3 py-3">
+          {/* User stub */}
+          <div className={`flex min-h-10 items-center gap-3 rounded-sm p-2`}>
+            <User size={22} className="text-text-secondary shrink-0" />
+            {!collapsed && (
+              <span className="text-text-secondary text-sm whitespace-nowrap">
+                username
+              </span>
+            )}
+          </div>
+          {/* Logout */}
+          <button
+            className={`flex min-h-10 w-full items-center gap-3 rounded-sm p-2 hover:cursor-pointer hover:bg-black/5`}
+          >
+            <LogOut size={22} className="text-text-secondary shrink-0" />
+            {!collapsed && (
+              <span className="text-text-secondary text-sm whitespace-nowrap">
+                Вийти
+              </span>
+            )}
+          </button>
+        </div>
       </aside>
+
       <main className="flex-1 overflow-y-auto">
         <Suspense fallback={null}>
           <Outlet />
         </Suspense>
       </main>
+
       <nav className="lg:hidden">{navMenu}</nav>
     </div>
   )
